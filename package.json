@@ -1,0 +1,12 @@
+{
+  "name": "angular-rest-client",
+  "description": "Angular starter CRUD project",
+  "repository": "https://github.com/jnwelzel/angular-rest-client",
+  "devDependencies": {
+    "phantomjs" : "~1.9",
+    "karma" : "~0.10",
+    "karma-junit-reporter" : "~0.1",
+    "karma-jasmine" : "~0.1",
+    "protractor" : "~0.17.0"
+  }
+}
