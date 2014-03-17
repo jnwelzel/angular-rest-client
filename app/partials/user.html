@@ -1,0 +1,27 @@
+<h1>User</h1>
+<hr/>
+
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label class="col-xs-2 control-label">Name</label>
+    <div class="col-xs-10">
+      <p class="form-control-static">{{user.name}}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-xs-2 control-label">Created</label>
+    <div class="col-xs-10">
+      <p class="form-control-static">{{user.createdAt | date : 'medium'}}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-xs-2 control-label">Updated</label>
+    <div class="col-xs-10">
+      <p class="form-control-static">{{user.updatedAt | date : 'medium'}}</p>
+    </div>
+  </div>
+</form>
+
+<hr/>
+<a href="#users" class="btn btn-primary">Edit</a>
+<a href="#users" class="btn btn-default">Back</a>

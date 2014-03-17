@@ -20,7 +20,7 @@
     <tbody>
       <tr ng-repeat="user in users | filter:search | orderBy:'name'">
         <td>{{$index + 1}}</td>
-        <td>{{user.name}}</td>
+        <td><a href="#user/{{user.id}}">{{user.name}}</a></td>
       </tr>
     </tbody>
   </table>
@@ -32,4 +32,4 @@
 
 <hr/>
 
-<a class="btn btn-primary" href="#new_user">New User</a>
+<a class="btn btn-primary" href="#newUser">New User</a>

@@ -10,8 +10,8 @@ angular.module('myApp', [
   'myApp.controllers'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
   $routeProvider.when('/users', {templateUrl: 'partials/users.html', controller: 'UsersController'});
-  $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
+  $routeProvider.when('/newUser', {templateUrl: 'partials/new_user.html', controller: 'NewUserController'});
+  $routeProvider.when('/user/:id', {templateUrl: 'partials/user.html', controller: 'UserController'});
   $routeProvider.otherwise({redirectTo: '/users'});
 }]);
