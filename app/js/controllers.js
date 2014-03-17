@@ -1,10 +1,12 @@
 'use strict';
 
+var user_resource = 'http://localhost:8080/rest/resources/users/';
+
 /* Controllers */
 
 angular.module('myApp.controllers', [])
   .controller('UsersController', ['$scope', '$http', function($scope, $http) {
-    $http.get('http://localhost:8080/rest/resources/users').
+    $http.get(user_resource).
       success(function(data) {
         $scope.users = data;
       });
@@ -14,9 +16,9 @@ angular.module('myApp.controllers', [])
 
     $scope.create = function(user) {
       $scope.master = angular.copy(user);
-      $http.post('http://localhost:8080/rest/resources/users', $scope.master).
+      $http.post(user_resource, $scope.master).
         success(function() {
-          $window.alert('New user created successfully.');
+          $window.alert('New user successfully created.');
           $location.path('/users');
         }).
         error(function() {
@@ -25,8 +27,26 @@ angular.module('myApp.controllers', [])
     }
   }])
   .controller('UserController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
-    $http.get('http://localhost:8080/rest/resources/users/' + $routeParams.id).
+    $http.get(user_resource + $routeParams.id).
       success(function(data) {
         $scope.user = data;
       });
+  }])
+  .controller('EditUserController', ['$scope', '$http', '$routeParams', '$window', '$location', function($scope, $http, $routeParams, $window, $location) {
+    $http.get(user_resource + $routeParams.id).
+      success(function(data) {
+        $scope.user = data;
+      });
+
+    $scope.update = function(user) {
+      $scope.master = angular.copy(user);
+      $http.put(user_resource, $scope.master).
+        success(function() {
+          $window.alert('User successfully edited.');
+          $location.path('/users/' + user.id);
+        }).
+        error(function() {
+          $window.alert('Error.');
+        });
+    }
   }]);

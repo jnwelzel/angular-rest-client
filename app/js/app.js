@@ -13,5 +13,6 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/users', {templateUrl: 'partials/users.html', controller: 'UsersController'});
   $routeProvider.when('/newUser', {templateUrl: 'partials/new_user.html', controller: 'NewUserController'});
   $routeProvider.when('/user/:id', {templateUrl: 'partials/user.html', controller: 'UserController'});
+  $routeProvider.when('/user/edit/:id', {templateUrl: 'partials/edit_user.html', controller: 'EditUserController'});
   $routeProvider.otherwise({redirectTo: '/users'});
 }]);

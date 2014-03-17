@@ -1,0 +1,11 @@
+<h1>Edit User</h1>
+<hr/>
+<form novalidate class="form-inline" role="form">
+  <div class="form-group">
+    <label for="search">Name</label>
+    <input type="text" id="name" ng-model="user.name" class="form-control" autofocus>
+  </div>
+  <button ng-click="update(user)" class="btn btn-primary">Save</button>
+</form>
+<hr />
+<a href="#user/{{user.id}}" class="btn btn-default">Cancel</a>
