@@ -5,11 +5,12 @@ var user_resource = 'http://localhost:8080/rest/resources/users/';
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-  .controller('UsersController', ['$scope', '$http', function($scope, $http) {
+  .controller('UsersController', ['$scope', '$http', function($scope, $http, daService) {
     $http.get(user_resource).
       success(function(data) {
         $scope.users = data;
       });
+    console.log(daService.daThing);
   }])
   .controller('NewUserController', ['$scope', '$http', '$window', '$location', function($scope, $http, $window, $location) {
     $scope.master = {};
@@ -31,6 +32,10 @@ angular.module('myApp.controllers', [])
       success(function(data) {
         $scope.user = data;
       });
+
+      $scope.edit = function(user) {}
+
+      $scope.delete = function(user) {}
   }])
   .controller('EditUserController', ['$scope', '$http', '$routeParams', '$window', '$location', function($scope, $http, $routeParams, $window, $location) {
     $http.get(user_resource + $routeParams.id).

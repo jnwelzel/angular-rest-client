@@ -1,6 +1,6 @@
 <h1>Users</h1>
 <hr/>
-<div ng-if="users">
+<div ng-if="users && users.length > 0">
   <form class="form-inline" role="form">
     <div class="form-group">
       <label class="sr-only" for="search">User's name</label>
@@ -26,8 +26,8 @@
   </table>
 </div>
 
-<div ng-if="!users" class="alert alert-warning">
-  <strong>Warning!</strong> No users found.
+<div ng-if="!users || users.length == 0" class="alert alert-warning">
+  <strong>Warning!</strong> No users found. Use the button below to create one ;)
 </div>
 
 <hr/>
