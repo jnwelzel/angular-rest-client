@@ -5,37 +5,44 @@ var user_resource = 'http://localhost:8080/rest/resources/users/';
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-  .controller('UsersController', ['$scope', '$http', function($scope, $http, daService) {
-    $http.get(user_resource).
-      success(function(data) {
-        $scope.users = data;
-      });
-    console.log(daService.daThing);
+  .controller('UsersController', ['$scope', 'User', function($scope, User) {
+        $scope.users = User.query();
   }])
-  .controller('NewUserController', ['$scope', '$http', '$window', '$location', function($scope, $http, $window, $location) {
+  .controller('NewUserController', ['$scope', '$window', '$location', 'User', function($scope, $window, $location, User) {
     $scope.master = {};
 
     $scope.create = function(user) {
       $scope.master = angular.copy(user);
-      $http.post(user_resource, $scope.master).
-        success(function() {
+      User.save(
+        {}, $scope.master, 
+        function() {
           $window.alert('New user successfully created.');
           $location.path('/users');
-        }).
-        error(function() {
+        },
+        function() {
           $window.alert('Error.');
-        });
+        }
+      );
     }
   }])
-  .controller('UserController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
-    $http.get(user_resource + $routeParams.id).
-      success(function(data) {
-        $scope.user = data;
-      });
+  .controller('UserController', ['$scope', '$routeParams' ,'$window', '$location', 'User', function($scope, $routeParams, $window, $location, User) {
+    $scope.user = User.find({id: $routeParams.id});
 
-      $scope.edit = function(user) {}
-
-      $scope.delete = function(user) {}
+    $scope.delete = function(user) {
+      var ok = confirm('Are you sure?');
+      if (ok) {
+        user.$delete(
+          {id: user.id},
+          function() {
+            $window.alert('User successfully deleted.');
+            $location.path('/users');
+          },
+          function() {
+            $window.alert('Error.');
+          }  
+        );
+      }
+    };
   }])
   .controller('EditUserController', ['$scope', '$http', '$routeParams', '$window', '$location', function($scope, $http, $routeParams, $window, $location) {
     $http.get(user_resource + $routeParams.id).
